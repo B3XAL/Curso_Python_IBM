@@ -19,9 +19,10 @@ def solicitar_entero():
             # Si el numero es menor de 0
             if numero < 0:
                 # Podemos utilizar el valor absoluto como definición de la matriz
-                respuesta = input("El número ingresado es negativo. ¿Desea utilizar el valor absoluto? (S/N): ")
-                if respuesta.upper() == 'S' or respuesta.upper() == 'SI' or respuesta.upper() == 'Y' or respuesta.upper() == 'YES':
+                respuesta = input("El número ingresado es negativo. ¿Desea utilizar el valor absoluto? (S/N): ").upper()
+                if respuesta in ['S', 'SI', 'Y', 'YES']:
                     numero = abs(numero)
+                    return numero
                 #Si no queremos usar el valor absoluto, volvemos a solicitarlo. 
                 else:
                     continue
@@ -34,7 +35,7 @@ def solicitar_entero():
         
         except ValueError:
             print("Error: ¡Debe ingresar un número entero válido!")
-            return numero
+        
         
 # Definimos una funcion para la creación de la matriz proporcionando el numero de definición
 # La matriz está inicializada en 0 a proposito, simplemente es educativo.
@@ -53,11 +54,15 @@ def crear_matriz_cuadrada(n):
 
 # Creamos una funcion que me rellena con numeros aletarios entre el 0 y el 9 la matriz que le pasemos.
 def rellenar_matriz_aleatoriamente(matriz):
+    # Reiniciar la semilla de generación de números aleatorios
+    random.seed()
     n = len(matriz)
+    
     for i in range(n):
         for j in range(n):
             numero_aleatorio = random.randint(0, 9)
             matriz[i][j] = numero_aleatorio
+            
 
 # Creamos una función para imprimir la matriz de forma bonita
 def print_matriz(matriz):
@@ -75,6 +80,11 @@ def sumar_filas(matriz):
         sumas.append(suma_fila)
     return sumas
 
+# Creamos una funcion que sume todos los resultados de las filas
+def totalizar_filas(lista):
+    suma = sum(lista)
+    return suma
+
 # Creamos una función para sumar los números de cada columna de la matriz
 def sumar_columnas(matriz):
     # Calculamos la longitud de la matriz
@@ -85,6 +95,12 @@ def sumar_columnas(matriz):
         suma_columna = sum(matriz[i][j] for i in range(n))
         sumas.append(suma_columna)
     return sumas
+
+# Creamos una funcion que sume todos los resultados de las columnas
+def totalizar_columnas(lista):
+    suma = sum(lista)
+    return suma
+
 
 
 
@@ -107,24 +123,32 @@ def main():
     print("Calculando las sumas de cada fila y columna")
     time.sleep(0.5)
     print("...")
+    time.sleep(1)
+    print("...")
     time.sleep(0.5)
-
     # Calculamos las sumas de las filas y nos lo devuelve en una lista.
     sumas_filas = sumar_filas(matriz)
+
+    # Calculamos el total de todos resultados de las filas
+    total_filas = totalizar_filas(sumas_filas)
 
     # Calculamos las sumas de las columnas y nos lo devuelve en una lista.
     sumas_columnas = sumar_columnas(matriz)
 
+    # Calculamos el total de todos resultados de las columnas
+    total_columnas = totalizar_columnas(sumas_columnas)
+
+    
     # Imprimimos la matriz junto con las sumas de filas y columnas
     print("Matriz generada:")
     for i, fila in enumerate(matriz):
         for elemento in fila:
             print(elemento, end="\t")
         print("\t =", sumas_filas[i])
-    print("---------------------------------------")
+    print("-" * (len(matriz[0]) * 8 + 15))
     for j, suma_columna in enumerate(sumas_columnas):
         print(suma_columna, end="\t")
-    print()
+    print(" " * (len(matriz[0])-6) + f"     = {total_columnas}|{total_filas}")
 
 # Llamamos a la función main para ejecutar el programa
 main()
