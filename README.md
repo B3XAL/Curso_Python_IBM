@@ -10,10 +10,10 @@
 
 * [Descripción del proyecto](#descripción)
 * [Carácteristicas del programa](#características)
-* [Clonación y uso](#clonacion_y_uso)
+* [Clonación y uso](#clonación-y-uso)
 * [Desarrollador del proyecto](#desarrollador-del-proyecto)
 * [Tecnologías utilizadas](#tecnologías-utilizadas)
-* [Enunciado IBM](enunciado.md)
+* [Enunciado IBM](./Enunciado.md)
 
 
 <br>
