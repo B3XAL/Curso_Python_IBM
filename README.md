@@ -56,10 +56,10 @@ cd Curso_Python_IBM
 
 3. Ejecuta el script
 ```shell
-python3 "Caso practico curso IBM.py" #Windows
+python3 "Caso_practico_curso_IBM.py" #Windows
  ```
 ```shell
-python3 Caso\ practico\ curso\ IBM.py #Linux
+python3 Caso_practico_curso_IBM.py #Linux
  ```
  <br>
 4. Ingresa un número entero para definir el tamaño de la matriz cuadrada.
